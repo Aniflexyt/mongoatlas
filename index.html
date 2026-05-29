@@ -5,107 +5,269 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Mon Laferte - Dashboard Cultural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>AUTOPOIÉTICA // MON LAFERTE DASHBOARD</title>
     <style>
-        /* Estética oscura y bohemia de Mon Laferte */
-        body { background-color: #0d0d0f; color: #f3f4f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .navbar { background-color: #151518; border-bottom: 3px solid #b91c1c; }
-        .card { background-color: #151518; border: 1px solid #26262b; color: white; }
-        .text-rose { color: #e11d48; }
-        .btn-rose { background-color: #b91c1c; color: white; font-weight: bold; border: none; }
-        .btn-rose:hover { background-color: #991b1b; color: white; }
-        .btn-dark-custom { background-color: #26262b; color: #a1a1aa; border: 1px solid #3f3f46; }
-        .btn-dark-custom:hover { background-color: #3f3f46; color: white; }
-        .form-control { background-color: #1f1f23; border: 1px solid #3f3f46; color: white; }
-        .form-control:focus { background-color: #26262b; color: white; border-color: #e11d48; box-shadow: none; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        :root {
+            --neon-red: #ff003c;
+            --neon-glow: rgba(255, 0, 60, 0.4);
+            --cyber-dark: #060608;
+            --panel-bg: rgba(18, 18, 24, 0.75);
+        }
+
+        body {
+            background-color: var(--cyber-dark);
+            color: #f1f1f5;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            overflow-x: hidden;
+            /* Fondo con cuadrícula ciberpunk sutil */
+            background-image: 
+                linear-gradient(rgba(255, 0, 60, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 60, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Estilo Cyber-Navbar */
+        .navbar {
+            background: rgba(6, 6, 8, 0.9) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--neon-red);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #fff !important;
+            text-shadow: 0 0 10px var(--neon-red);
+            letter-spacing: 3px;
+        }
+
+        /* Paneles futuristas con efecto cristal (Glassmorphism) */
+        .cyber-card {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 0, 60, 0.2);
+            backdrop-filter: blur(12px);
+            border-radius: 4px; /* Bordes más rectos estilo interfaz militar/futurista */
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .cyber-card:hover {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.25);
+        }
+        /* Esquinas decorativas futuristas */
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; width: 10px; height: 10px;
+            border-top: 2px solid var(--neon-red); border-left: 2px solid var(--neon-red);
+        }
+        .cyber-card::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px; width: 10px; height: 10px;
+            border-bottom: 2px solid var(--neon-red); border-right: 2px solid var(--neon-red);
+        }
+
+        /* Encabezados */
+        .cyber-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            border-bottom: 1px dashed rgba(255, 0, 60, 0.3);
+            padding-bottom: 8px;
+        }
+        .text-neon {
+            color: var(--neon-red);
+            text-shadow: 0 0 8px var(--neon-glow);
+        }
+
+        /* Entradas de formulario futuristas */
+        .form-control {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+            border-radius: 2px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .form-control:focus {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 10px var(--neon-glow);
+            background: rgba(255, 0, 60, 0.05) !important;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Botones de acción Neón */
+        .btn-neon-red {
+            background: transparent;
+            border: 1px solid var(--neon-red);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 5px var(--neon-glow);
+        }
+        .btn-neon-red:hover {
+            background: var(--neon-red);
+            color: #fff;
+            box-shadow: 0 0 20px var(--neon-red);
+            transform: translateY(-2px);
+        }
+        .btn-cyber-dark {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #a1a1aa;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .btn-cyber-dark:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Contenedor del Iframe Dinámico */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* Glitch sutil decorativo */
+        .glitch-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-red), #990024, transparent);
+            width: 100%;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-dark shadow mb-4">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase tracking-wider" href="#">🌹 Mon Laferte - Dashboard Ficha 3065826</a>
-            <span class="navbar-text text-muted d-none d-md-inline">Sesión de Prácticas NoSQL</span>
+    <nav class="navbar navbar-dark sticky-top p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#">
+                // LAFERTE_OS_V2.5
+            </a>
+            <span class="badge bg-dark text-neon border border-danger p-2 px-3 fw-bold tracking-wider" style="font-family: 'Orbitron', sans-serif;">
+                SYS STATUS: ONLINE // FICHA 3065826
+            </span>
         </div>
     </nav>
 
-    <div class="container my-4">
-        <div class="p-4 mb-4 rounded-3 shadow" style="background: linear-gradient(135deg, #151518 0%, #26262b 100%); border-left: 6px solid #b91c1c;">
-            <h1 class="display-6 fw-bold">Universo Musical de <span class="text-rose">Mon Laferte</span></h1>
-            <p class="fs-6 text-muted mb-0">Plataforma interactiva que conecta la gestión de datos en MongoDB Atlas con recursos multimedia de la artista.</p>
-        </div>
+    <div class="container my-5">
+        
+        <div class="glitch-bar"></div>
 
         <div class="row g-4">
+            
             <div class="col-lg-6">
-                <div class="card p-4 h-100 shadow-sm">
-                    <h4 class="card-title fw-bold text-rose mb-3">📝 Registro de Gustos por Aprendiz</h4>
-                    <p class="text-muted small">Ingresa la información requerida en la práctica guiada para almacenarla en el clúster NoSQL.</p>
+                <div class="cyber-card p-4 h-100 shadow">
+                    <h3 class="cyber-title mb-4"><span class="text-neon">&gt;_</span> DATOS_INPUT_CORE</h3>
+                    <p class="text-muted small mb-4">Módulo de transmisión NoSQL conectado directamente al clúster de producción en Mongo Atlas.</p>
                     
-                    <form action="logica.php" method="post" class="mt-2">
+                    <form action="logica.php" method="post">
                         <div class="mb-3">
-                            <label class="form-label fw-semibold small text-uppercase text-muted">Apellidos:</label>
-                            <input type="text" required maxlength="200" name="apellidos" class="form-control" placeholder="Ej. Cárdenas García">
+                            <label class="form-label text-uppercase small text-neon fw-bold">Apellidos:</label>
+                            <input type="text" required maxlength="200" name="apellidos" class="form-control" placeholder="DIGITE APELLIDOS">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold small text-uppercase text-muted">Nombres:</label>
-                            <input type="text" required maxlength="200" name="nombres" class="form-control" placeholder="Ej. Johan Andrey">
+                            <label class="form-label text-uppercase small text-neon fw-bold">Nombres:</label>
+                            <input type="text" required maxlength="200" name="nombres" class="form-control" placeholder="DIGITE NOMBRES">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold small text-uppercase text-muted">Color favorito:</label>
-                            <input type="text" required maxlength="200" name="color" class="form-control" placeholder="Ej. Rojo Carmesí">
+                            <label class="form-label text-uppercase small text-neon fw-bold">Color Favorito:</label>
+                            <input type="text" required maxlength="200" name="color" class="form-control" placeholder="DIGITE COLOR">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold small text-uppercase text-muted">Comida favorita:</label>
-                            <input type="text" required maxlength="200" name="comida" class="form-control" placeholder="Ej. Tacos al pastor">
+                            <label class="form-label text-uppercase small text-neon fw-bold">Comida Favorita:</label>
+                            <input type="text" required maxlength="200" name="comida" class="form-control" placeholder="DIGITE COMIDA">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold small text-uppercase text-muted">Tipo de literatura y cine:</label>
-                            <input type="text" required maxlength="200" name="pelicula" class="form-control" placeholder="Ej. Drama / Realismo Mágico">
+                            <label class="form-label text-uppercase small text-neon fw-bold">Tipo de Literatura y Cine:</label>
+                            <input type="text" required maxlength="200" name="pelicula" class="form-control" placeholder="DIGITE GÉNERO CINE/LITERATURA">
                         </div>
                         
                         <div class="d-flex gap-2 mt-4">
-                            <button type="submit" class="btn btn-rose px-4 fw-bold shadow-sm">Registrar Respuesta</button>
-                            <a href="logica.php" class="btn btn-dark-custom px-4 fw-bold">Ver Datos en Atlas</a>
+                            <button type="submit" class="btn btn-neon-red px-4 py-2 flex-grow-1">EJECUTAR_REGISTRO</button>
+                            <a href="logica.php" class="btn btn-cyber-dark px-4 py-2">VER_DATOS_ATLAS</a>
                         </div>
                     </form>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="card p-4 h-100 shadow-sm d-flex flex-column">
-                    <h4 class="card-title fw-bold text-rose mb-3">🎵 Reproductor Multimedia Integrado</h4>
-                    <p class="text-muted small">Visualiza y escucha los éxitos y obras conceptuales más importantes transmitidos directamente por sus canales oficiales.</p>
+                <div class="cyber-card p-4 h-100 shadow d-flex flex-column">
+                    <h3 class="cyber-title mb-4"><span class="text-neon">&gt;_</span> MULTIMEDIA_STREAM_PANEL</h3>
+                    <p class="text-muted small mb-3">Pega la URL de cualquier canción de YouTube de Mon Laferte para actualizar el nodo del reproductor en tiempo real.</p>
                     
-                    <div class="my-auto">
-                        <div class="video-container shadow">
-                            <iframe src="https://www.youtube.com/embed/WT-ve9ByUqw" title="Mon Laferte - Tu Falta De Querer" allowfullscreen></iframe>
-                        </div>
-                        <div class="mt-3 p-2 bg-dark rounded border border-secondary text-center">
-                            <span class="small fw-bold text-uppercase text-rose">En reproducción:</span>
-                            <span class="small d-block text-white-50">Mon Laferte - Tu Falta De Querer (En Vivo)</span>
+                    <div class="mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-neon small fw-bold">URL</span>
+                            <input type="text" id="urlCancion" class="form-control" placeholder="Ej: https://www.youtube.com/watch?v=WT-ve9ByUqw" value="https://www.youtube.com/watch?v=WT-ve9ByUqw">
+                            <button class="btn btn-neon-red" type="button" onclick="cargarCancion()">CONECTAR_NODO</button>
                         </div>
                     </div>
 
-                    <div class="row g-2 mt-3">
-                        <div class="col-6">
-                            <a href="https://open.spotify.com/artist/4X8Wv6vbeG996vK86Z679q" target="_blank" class="btn btn-dark-custom w-100 btn-sm py-2">🟢 Spotify Oficial</a>
+                    <div class="my-auto">
+                        <div class="video-wrapper">
+                            <iframe id="reproductorCyber" src="https://www.youtube.com/embed/WT-ve9ByUqw" title="YouTube video player" allowfullscreen></iframe>
                         </div>
-                        <div class="col-6">
-                            <a href="https://www.youtube.com/@MonLaferteOficial" target="_blank" class="btn btn-dark-custom w-100 btn-sm py-2">🔴 YouTube Canal</a>
+                        <div class="mt-3 p-3 text-center bg-black bg-opacity-50 border border-secondary border-opacity-20">
+                            <span class="small fw-bold text-uppercase text-neon d-block mb-1">STREAMING MATRIX STATUS</span>
+                            <span id="videoTitle" class="small text-white-50">Mon Laferte - Autopoiética / Transmisión de Audio Activa</span>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <footer class="footer mt-auto py-3 text-center border-top border-dark" style="background-color: #151518;">
-        <div class="container">
-            <span class="text-muted small">Taller 4 Servidores - Diseñado por <strong>Johan Cárdenas</strong></span>
-        </div>
+    <footer class="py-3 text-center mt-5 border-top border-secondary border-opacity-20" style="background: rgba(6,6,8,0.8);">
+        <span class="text-muted small" style="font-family: 'Orbitron', sans-serif;">DEVELOPED_BY // JOHAN CARDENAS_ // ARCHITECTURE_TALLER4</span>
     </footer>
 
+    <script>
+        function cargarCancion() {
+            const urlInput = document.getElementById('urlCancion').value;
+            let videoId = '';
+
+            // Procesamos la URL estándar o corta de YouTube para extraer el ID del video
+            if (urlInput.includes('v=')) {
+                videoId = urlInput.split('v=')[1].split('&')[0];
+            } else if (urlInput.includes('youtu.be/')) {
+                videoId = urlInput.split('youtu.be/')[1].split('?')[0];
+            } else if (urlInput.includes('embed/')) {
+                videoId = urlInput.split('embed/')[1].split('?')[0];
+            } else {
+                alert('Formato de URL no reconocido. Por favor usa un enlace válido de YouTube.');
+                return;
+            }
+
+            if (videoId) {
+                // Modificamos el atributo 'src' del iframe con la URL de incrustación (embed) futurista
+                document.getElementById('reproductorCyber').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                document.getElementById('videoTitle').innerText = `Nodo multimedia sincronizado exitosamente con ID: ${videoId}`;
+            }
+        }
+    </script>
 </body>
 </html>
