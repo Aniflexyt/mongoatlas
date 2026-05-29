@@ -3,15 +3,14 @@
 date_default_timezone_set('America/Bogota');
 $hoy = date("Y-m-d H:i:s");
 
-require 'vendor/autoload.php'; // Cargar dependencias de Composer
+require 'vendor/autoload.php'; // Cargar Composer
 
 try {
-    // Establecer conexión con tu Cluster de MongoDB Atlas
+    // Conexión a tu clúster de Mongo Atlas
     $cliente = new MongoDB\Client("mongodb+srv://johancardenas619_db_user:nwH1EiuQn4AZizRt@cluster0.vx98nac.mongodb.net/?appName=Cluster0");
-    $db = $cliente->pruebas;      // Base de datos 
-    $coleccion = $db->gustos;     // Colección 
+    $db = $cliente->pruebas;      
+    $coleccion = $db->gustos;     
 
-    // Controlar el flujo: Solo insertar si los datos vienen por el formulario (POST)
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = $coleccion->insertOne([
             "apellidos" => $_POST["apellidos"],
@@ -22,12 +21,17 @@ try {
             "registro"  => $hoy
         ]);
 
-        // Banner informativo del ID generado en Atlas
         echo "<center><div class='alert alert-success m-0 rounded-0 fw-bold' role='alert'>¡Documento insertado con éxito! ID asignado: " . $resultado->getInsertedId() . "</div></center>";
     }
 
-    // CONSULTA NATIVA SOLICITADA EN EL PUNTO 1: Listar todo el historial
-    $documentos = $coleccion->find();
+    // NUEVA CONSULTA CON TYPEMAP: Evita el Fatal Error transformando todo a arreglos de PHP
+    $documentos = $coleccion->find([], [
+        'typeMap' => [
+            'root' => 'array',
+            'document' => 'array',
+            'array' => 'array'
+        ]
+    ]);
 
 } catch (Exception $e) {
     die("<div class='alert alert-danger text-center m-5 fw-bold'>Error crítico en la conexión: " . $e->getMessage() . "</div>");
@@ -45,7 +49,7 @@ try {
 
     <div class="container card p-4 shadow-sm mt-3">
         <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
-            <h2 class="text-primary fw-bold m-0">Documentos en la Colección</h2>
+            <h2 class="text-primary fw-bold m-0">📋 Documentos en la Colección "Gustos"</h2>
             <a href="index.html" class="btn btn-secondary fw-semibold">← Volver al Formulario</a>
         </div>
         
