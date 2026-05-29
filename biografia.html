@@ -1,0 +1,215 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Biografía | Mon Laferte</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@300;400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --vino:#5e0b15;
+    --rosa:#ff3f81;
+    --negro:#050505;
+    --glass:rgba(20,10,12,.75);
+}
+
+body{
+    background:
+    linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.9)),
+    url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1920');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:white;
+    font-family:'Montserrat',sans-serif;
+}
+
+.navbar{
+    background:rgba(0,0,0,.8)!important;
+    backdrop-filter:blur(10px);
+}
+
+.navbar-brand{
+    font-family:'Cinzel',serif;
+    letter-spacing:4px;
+}
+
+.nav-link{
+    color:white!important;
+    margin-left:20px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:var(--rosa)!important;
+}
+
+.hero{
+    padding:120px 20px 80px;
+    text-align:center;
+}
+
+.hero h1{
+    font-family:'Cinzel',serif;
+    font-size:4rem;
+    letter-spacing:6px;
+}
+
+.hero p{
+    max-width:800px;
+    margin:auto;
+    margin-top:20px;
+
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.3rem;
+    color:#ddd;
+}
+
+.bio-card{
+    background:var(--glass);
+    padding:40px;
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    margin-top:40px;
+}
+
+.bio-card h2{
+    font-family:'Cinzel',serif;
+    margin-bottom:20px;
+    color:#ff8ab2;
+}
+
+.bio-card p{
+    line-height:1.9;
+    color:#ddd;
+}
+
+.bio-img{
+    width:100%;
+    border-radius:10px;
+
+    box-shadow:
+    0 0 25px rgba(255,63,129,.25);
+}
+
+footer{
+    margin-top:80px;
+    padding:30px;
+    text-align:center;
+    color:#777;
+}
+
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand" href="index.html">
+MON LAFERTE
+</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="index.html">Inicio</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link active" href="biografia.html">Biografía</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="tienda.html">Tienda</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1>MON LAFERTE</h1>
+
+<p>
+Una voz nacida desde la melancolía,
+el arte y la intensidad emocional.
+Una femme fatale latinoamericana.
+</p>
+
+</section>
+
+<div class="container">
+
+<div class="row align-items-center g-5">
+
+<div class="col-lg-5">
+
+<img
+src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1200"
+class="bio-img">
+
+</div>
+
+<div class="col-lg-7">
+
+<div class="bio-card">
+
+<h2>La Mujer Detrás del Arte</h2>
+
+<p>
+Mon Laferte es una cantante, compositora y artista visual chilena
+reconocida por fusionar géneros como bolero, rock, jazz, cabaret
+y música latina alternativa.
+</p>
+
+<p>
+Su estética mezcla dramatismo, romanticismo oscuro y una fuerza emocional
+que convirtió su música en una experiencia profundamente íntima.
+</p>
+
+<p>
+Con álbumes como <strong>Seis</strong> y <strong>Autopoiética</strong>,
+ha construido un universo artístico lleno de pasión,
+nostalgia y libertad creativa.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+MON LAFERTE // BIOGRAFÍA OFICIAL FAN UI
+</footer>
+
+</body>
+</html>
+```
