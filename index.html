@@ -3,288 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
-    <title>FEMME FATALE // MON LAFERTE DASHBOARD</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@300;400;500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <title>MON LAFERTE // FEMME FATALE</title>
+
     <style>
-        :root {
-            --vamp-red: #800020; /* Borgoña / Vino */
-            --velvet-rose: #ff2a6d; /* Rosa neón seductor */
-            --fatale-black: #050203; /* Negro profundo */
-            --panel-bg: rgba(15, 8, 10, 0.85);
-            --gold-accent: #d4af37; /* Oro sutil */
+
+        :root{
+            --vino:#5e0b15;
+            --rojo:#9b111e;
+            --rosa:#ff3f81;
+            --negro:#050505;
+            --dorado:#d4af37;
+            --gris:#d8d0d0;
+            --glass:rgba(20,10,12,.75);
         }
 
-        body {
-            background-color: var(--fatale-black);
-            color: #f3ecef;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            letter-spacing: 0.8px;
-            overflow-x: hidden;
-            /* Fondo con textura de líneas finas y elegantes */
-            background-image: 
-                linear-gradient(rgba(128, 0, 32, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(128, 0, 32, 0.04) 1px, transparent 1px);
-            background-size: 40px 40px;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        /* Estilo Navbar Elegante y Peligrosa */
-        .navbar {
-            background: rgba(5, 2, 3, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--vamp-red);
-            box-shadow: 0 2px 20px rgba(128, 0, 32, 0.3);
-        }
-        .navbar-brand {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            color: #fff !important;
-            text-shadow: 0 0 12px var(--velvet-rose);
-            letter-spacing: 4px;
+        body{
+            background:
+            radial-gradient(circle at top left, rgba(255,63,129,.15), transparent 25%),
+            radial-gradient(circle at bottom right, rgba(94,11,21,.35), transparent 30%),
+            linear-gradient(to bottom, #050505, #120608, #050505);
+
+            min-height:100vh;
+            overflow-x:hidden;
+
+            color:white;
+            font-family:'Montserrat',sans-serif;
         }
 
-        /* Paneles Femme Fatale con efecto cristal de terciopelo */
-        .fatale-card {
-            background: var(--panel-bg);
-            border: 1px solid rgba(255, 42, 109, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 2px;
-            position: relative;
-            transition: all 0.4s ease;
-        }
-        .fatale-card:hover {
-            border-color: var(--velvet-rose);
-            box-shadow: 0 0 30px rgba(128, 0, 32, 0.4);
-        }
-        
-        /* Esquinas ornamentales estilo Noir */
-        .fatale-card::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: -1px; width: 12px; height: 12px;
-            border-top: 2px solid var(--vamp-red); border-left: 2px solid var(--vamp-red);
-        }
-        .fatale-card::after {
-            content: '';
-            position: absolute;
-            bottom: -1px; right: -1px; width: 12px; height: 12px;
-            border-bottom: 2px solid var(--vamp-red); border-right: 2px solid var(--vamp-red);
+        /* partículas suaves */
+
+        body::before{
+            content:'';
+            position:fixed;
+            inset:0;
+            background-image:
+            linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+
+            background-size:40px 40px;
+            pointer-events:none;
+            z-index:-1;
         }
 
-        /* Encabezados y Títulos Tipográficos Clásicos/Modernos */
-        .fatale-title {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 2px;
-            border-bottom: 1px solid rgba(128, 0, 32, 0.4);
-            padding-bottom: 10px;
-        }
-        .text-fatale {
-            color: var(--velvet-rose);
-            text-shadow: 0 0 8px rgba(255, 42, 109, 0.6);
-        }
-        .text-serif {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
+        /* NAVBAR */
+
+        .navbar{
+            background:rgba(0,0,0,.8)!important;
+            backdrop-filter:blur(15px);
+            border-bottom:1px solid rgba(255,63,129,.25);
+            box-shadow:0 0 30px rgba(255,63,129,.15);
         }
 
-        /* Entradas de formulario oscuras y sensuales */
-        .form-control {
-            background: rgba(20, 10, 12, 0.6) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff !important;
-            border-radius: 0px;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s;
-        }
-        .form-control:focus {
-            border-color: var(--velvet-rose);
-            box-shadow: 0 0 12px rgba(255, 42, 109, 0.3);
-            background: rgba(128, 0, 32, 0.1) !important;
-        }
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 0.9rem;
+        .navbar-brand{
+            font-family:'Cinzel',serif;
+            font-size:1.4rem;
+            letter-spacing:4px;
+            color:white!important;
+            text-shadow:0 0 12px rgba(255,63,129,.6);
         }
 
-        /* Botones estilo Femme Fatale */
-        .btn-fatale {
-            background: transparent;
-            border: 1px solid var(--velvet-rose);
-            color: #fff;
-            font-family: 'Cinzel', serif;
-            font-weight: 500;
-            border-radius: 0px;
-            letter-spacing: 2px;
-            transition: all 0.4s;
-            box-shadow: 0 0 8px rgba(255, 42, 109, 0.2);
-        }
-        .btn-fatale:hover {
-            background: linear-gradient(45deg, var(--vamp-red), var(--velvet-rose));
-            color: #fff;
-            box-shadow: 0 0 25px var(--velvet-rose);
-            border-color: transparent;
-        }
-        .btn-dark-velvet {
-            background: rgba(128, 0, 32, 0.15);
-            border: 1px solid rgba(128, 0, 32, 0.4);
-            color: #d1b8c0;
-            font-family: 'Cinzel', serif;
-            border-radius: 0px;
-            transition: all 0.3s;
-        }
-        .btn-dark-velvet:hover {
-            background: #fff;
-            color: #000;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        .status-badge{
+            border:1px solid rgba(255,63,129,.4);
+            color:#ffb4cb;
+            padding:10px 18px;
+            font-size:.8rem;
+            letter-spacing:2px;
+            font-family:'Cinzel',serif;
+            background:rgba(255,63,129,.08);
         }
 
-        /* Contenedor del Iframe Dinámico */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border: 1px solid rgba(128, 0, 32, 0.5);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        /* HERO */
+
+        .hero{
+            padding:80px 20px 60px;
+            text-align:center;
         }
 
-        /* Línea divisoria aterciopelada */
-        .velvet-bar {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--vamp-red), var(--velvet-rose), transparent);
-            width: 100%;
-            margin-bottom: 30px;
+        .hero h1{
+            font-family:'Cinzel',serif;
+            font-size:4rem;
+            letter-spacing:8px;
+            margin-bottom:20px;
+
+            background:linear-gradient(to right, #ffffff, #ff7ba7);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
         }
+
+        .hero p{
+            max-width:800px;
+            margin:auto;
+            color:#d3c7c7;
+            font-size:1.1rem;
+            line-height:1.8;
+            font-family:'Cormorant Garamond',serif;
+            font-style:italic;
+        }
+
+        /* CARDS */
+
+        .fatale-card{
+            background:var(--glass);
+            border:1px solid rgba(255,63,129,.15);
+            backdrop-filter:blur(18px);
+
+            border-radius:0;
+            padding:35px;
+
+            position:relative;
+            overflow:hidden;
+
+            transition:.4s;
+        }
+
+        .fatale-card:hover{
+            transform:translateY(-5px);
+            box-shadow:0 0 35px rgba(255,63,129,.2);
+            border-color:rgba(255,63,129,.5);
+        }
+
+        .fatale-card::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:1px;
+
+            background:linear-gradient(to right, transparent, var(--rosa), transparent);
+        }
+
+        .fatale-title{
+            font-family:'Cinzel',serif;
+            letter-spacing:3px;
+            margin-bottom:25px;
+            color:white;
+        }
+
+        .fatale-title span{
+            color:var(--rosa);
+            text-shadow:0 0 10px rgba(255,63,129,.8);
+        }
+
+        /* INPUTS */
+
+        .form-label{
+            color:#ff9fbe;
+            letter-spacing:1px;
+            margin-bottom:8px;
+            font-size:.85rem;
+            text-transform:uppercase;
+        }
+
+        .form-control{
+            background:rgba(0,0,0,.45)!important;
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:0;
+
+            color:white!important;
+            padding:14px;
+
+            transition:.3s;
+        }
+
+        .form-control:focus{
+            border-color:var(--rosa);
+            box-shadow:0 0 15px rgba(255,63,129,.3);
+            background:rgba(255,63,129,.06)!important;
+        }
+
+        .form-control::placeholder{
+            color:rgba(255,255,255,.28);
+        }
+
+        /* BOTONES */
+
+        .btn-fatale{
+            background:transparent;
+            border:1px solid var(--rosa);
+
+            color:white;
+            padding:12px 30px;
+
+            font-family:'Cinzel',serif;
+            letter-spacing:2px;
+
+            transition:.4s;
+        }
+
+        .btn-fatale:hover{
+            background:linear-gradient(45deg, var(--vino), var(--rosa));
+            border-color:transparent;
+
+            box-shadow:0 0 25px rgba(255,63,129,.5);
+
+            color:white;
+        }
+
+        .btn-dark{
+            background:rgba(255,255,255,.04);
+            border:1px solid rgba(255,255,255,.1);
+
+            color:#ddd;
+            padding:12px 30px;
+
+            letter-spacing:2px;
+            font-family:'Cinzel',serif;
+        }
+
+        .btn-dark:hover{
+            background:white;
+            color:black;
+        }
+
+        /* VIDEO */
+
+        .video-wrapper{
+            position:relative;
+            width:100%;
+            padding-bottom:56.25%;
+            overflow:hidden;
+
+            border:1px solid rgba(255,63,129,.25);
+
+            box-shadow:
+            0 0 30px rgba(255,63,129,.15),
+            0 0 80px rgba(0,0,0,.8);
+        }
+
+        .video-wrapper iframe{
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+        }
+
+        .music-info{
+            margin-top:20px;
+            padding:20px;
+            background:rgba(0,0,0,.5);
+            border:1px solid rgba(255,255,255,.05);
+
+            text-align:center;
+        }
+
+        .music-info span{
+            display:block;
+        }
+
+        .music-title{
+            color:#ff9fbe;
+            font-family:'Cormorant Garamond',serif;
+            font-size:1.3rem;
+            margin-top:5px;
+        }
+
+        /* FOOTER */
+
+        footer{
+            margin-top:80px;
+            padding:30px;
+            text-align:center;
+
+            border-top:1px solid rgba(255,255,255,.08);
+
+            color:#777;
+
+            font-family:'Cinzel',serif;
+            letter-spacing:2px;
+            font-size:.8rem;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .hero h1{
+                font-size:2.5rem;
+                letter-spacing:4px;
+            }
+
+            .navbar-brand{
+                font-size:1rem;
+                letter-spacing:2px;
+            }
+
+        }
+
     </style>
 </head>
+
 <body>
 
-    <nav class="navbar navbar-dark sticky-top p-3">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
+        <div class="container">
+
             <a class="navbar-brand" href="#">
-                MON LAFERTE // FATALE_OS
+                MON LAFERTE // FEMME FATALE
             </a>
-            <span class="badge bg-dark text-fatale border border-secondary p-2 px-3 fw-bold" style="font-family: 'Cinzel', serif; font-size: 0.85rem;">
-                STATUS: AMOR CARMÍN // FICHA 3065826
-            </span>
+
+            <div class="status-badge">
+                AMOR CARMÍN // SYSTEM ACTIVE
+            </div>
+
         </div>
     </nav>
 
-    <div class="container my-5">
-        
-        <div class="velvet-bar"></div>
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <h1>FEMME FATALE</h1>
+
+            <p>
+                Una interfaz inspirada en el universo oscuro, elegante y pasional de Mon Laferte.
+                Tonos vino, glamour cinematográfico, romanticismo decadente y una estética noir
+                convertida en dashboard.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CONTENIDO -->
+
+    <div class="container pb-5">
 
         <div class="row g-4">
-            
+
+            <!-- FORMULARIO -->
+
             <div class="col-lg-6">
-                <div class="fatale-card p-4 h-100 shadow">
-                    <h3 class="fatale-title mb-4"><span class="text-fatale">I.</span> DATOS_INPUT_CORE</h3>
-                    <p class="text-serif text-muted small mb-4">Formulario de recopilación pasional conectado directamente a tu clúster de Mongo Atlas.</p>
-                    
+
+                <div class="fatale-card h-100">
+
+                    <h3 class="fatale-title">
+                        <span>I.</span> REGISTRO PASIONAL
+                    </h3>
+
                     <form action="logica.php" method="post">
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase small text-fatale fw-bold">Apellidos:</label>
-                            <input type="text" required maxlength="200" name="apellidos" class="form-control" placeholder="INGRESE SUS APELLIDOS">
+
+                        <div class="mb-4">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" name="apellidos" maxlength="200" required class="form-control" placeholder="Ingrese sus apellidos">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase small text-fatale fw-bold">Nombres:</label>
-                            <input type="text" required maxlength="200" name="nombres" class="form-control" placeholder="INGRESE SUS NOMBRES">
+
+                        <div class="mb-4">
+                            <label class="form-label">Nombres</label>
+                            <input type="text" name="nombres" maxlength="200" required class="form-control" placeholder="Ingrese sus nombres">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase small text-fatale fw-bold">Color Favorito:</label>
-                            <input type="text" required maxlength="200" name="color" class="form-control" placeholder="INGRESE COLOR DE PREFERENCIA">
+
+                        <div class="mb-4">
+                            <label class="form-label">Color Favorito</label>
+                            <input type="text" name="color" maxlength="200" required class="form-control" placeholder="Rojo vino, negro, rosa...">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase small text-fatale fw-bold">Comida Favorita:</label>
-                            <input type="text" required maxlength="200" name="comida" class="form-control" placeholder="INGRESE SU DELICIA FAVORITA">
+
+                        <div class="mb-4">
+                            <label class="form-label">Comida Favorita</label>
+                            <input type="text" name="comida" maxlength="200" required class="form-control" placeholder="Tu obsesión culinaria">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase small text-fatale fw-bold">Tipo de Literatura y Cine:</label>
-                            <input type="text" required maxlength="200" name="pelicula" class="form-control" placeholder="GÉNERO DE ARTE PREFERIDO">
+
+                        <div class="mb-4">
+                            <label class="form-label">Literatura y Cine</label>
+                            <input type="text" name="pelicula" maxlength="200" required class="form-control" placeholder="Drama, noir, romance...">
                         </div>
-                        
-                        <div class="d-flex gap-2 mt-4">
-                            <button type="submit" class="btn btn-fatale px-4 py-2 flex-grow-1">REGISTRAR_ALMA</button>
-                            <a href="logica.php" class="btn btn-dark-velvet px-4 py-2">VER_ATLAS</a>
+
+                        <div class="d-flex gap-3 mt-4">
+
+                            <button type="submit" class="btn btn-fatale flex-fill">
+                                REGISTRAR
+                            </button>
+
+                            <a href="logica.php" class="btn btn-dark flex-fill">
+                                VER DATOS
+                            </a>
+
                         </div>
+
                     </form>
+
                 </div>
+
             </div>
 
+            <!-- VIDEO -->
+
             <div class="col-lg-6">
-                <div class="fatale-card p-4 h-100 shadow d-flex flex-column">
-                    <h3 class="fatale-title mb-4"><span class="text-fatale">II.</span> REPRODUCTOR FATALE</h3>
-                    
-                    <div class="p-3 mb-4 bg-black bg-opacity-40 border border-danger border-opacity-10 text-muted small">
-                        <span class="text-fatale fw-bold d-block mb-1">💋 INSTRUCCIÓN AUTOMÁTICA:</span>
-                        Simplemente <strong>pega la URL</strong> de cualquier canción de YouTube de Mon Laferte en el cuadro de abajo. El nodo de video detectará el enlace y **aparecerá instantáneamente** sin necesidad de hacer clics.
-                    </div>
-                    
+
+                <div class="fatale-card h-100 d-flex flex-column">
+
+                    <h3 class="fatale-title">
+                        <span>II.</span> REPRODUCTOR NOIR
+                    </h3>
+
                     <div class="mb-4">
+
+                        <label class="form-label mb-2">
+                            URL DE YOUTUBE
+                        </label>
+
                         <div class="input-group">
-                            <span class="input-group-text bg-dark border-secondary text-fatale small fw-bold" style="font-family: 'Cinzel', serif;">LINK</span>
-                            <input type="text" id="urlCancion" class="form-control" placeholder="Pega el enlace aquí..." value="https://www.youtube.com/watch?v=WT-ve9ByUqw" oninput="cargarCancion()">
-                            <button class="btn btn-fatale" type="button" onclick="cargarCancion()">CONECTAR</button>
+
+                            <input
+                            type="text"
+                            id="urlCancion"
+                            class="form-control"
+                            placeholder="Pega una canción de Mon Laferte..."
+                            value="https://www.youtube.com/watch?v=WT-ve9ByUqw"
+                            oninput="cargarCancion()">
+
+                            <button class="btn btn-fatale" onclick="cargarCancion()">
+                                CONECTAR
+                            </button>
+
                         </div>
+
                     </div>
 
-                    <div class="my-auto">
-                        <div class="video-wrapper">
-                            <iframe id="reproductorCyber" src="https://www.youtube.com/embed/WT-ve9ByUqw" title="YouTube video player" allowfullscreen></iframe>
-                        </div>
-                        <div class="mt-3 p-3 text-center bg-black bg-opacity-60 border border-secondary border-opacity-10">
-                            <span class="small fw-bold text-uppercase text-fatale d-block mb-1" style="letter-spacing: 2px;">VIBE MATRIX ACTIVE</span>
-                            <span id="videoTitle" class="small text-white-50 italic text-serif">Mon Laferte - Autopoiética / Sintonía Pasional Activa</span>
-                        </div>
+                    <div class="video-wrapper">
+
+                        <iframe
+                        id="reproductorCyber"
+                        src="https://www.youtube.com/embed/WT-ve9ByUqw"
+                        allowfullscreen>
+                        </iframe>
+
                     </div>
+
+                    <div class="music-info">
+
+                        <span style="letter-spacing:2px; font-size:.8rem;">
+                            NOW PLAYING
+                        </span>
+
+                        <span class="music-title" id="videoTitle">
+                            Mon Laferte — Autopoiética
+                        </span>
+
+                    </div>
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
 
-    <footer class="py-4 text-center mt-5 border-top border-secondary border-opacity-10" style="background: rgba(5,2,3,0.9);">
-        <span class="text-muted small text-uppercase" style="font-family: 'Cinzel', serif; letter-spacing: 2px;">DESIGN_BY // JOHAN CARDENAS_ // ARCHITECTURE_TALLER4</span>
+    <!-- FOOTER -->
+
+    <footer>
+        DESIGN BY JOHAN CARDENAS // MON LAFERTE INSPIRED UI
     </footer>
 
+    <!-- JS -->
+
     <script>
-        function cargarCancion() {
+
+        function cargarCancion(){
+
             const urlInput = document.getElementById('urlCancion').value.trim();
+
             let videoId = '';
 
-            // Si el input está vacío, no hace nada para evitar alertas molestas mientras escribe
-            if (!urlInput) return;
+            if(!urlInput) return;
 
-            // Procesamos la URL estándar, corta o de incrustación de YouTube para extraer el ID
-            if (urlInput.includes('v=')) {
+            if(urlInput.includes('v=')){
                 videoId = urlInput.split('v=')[1].split('&')[0];
-            } else if (urlInput.includes('youtu.be/')) {
+            }
+            else if(urlInput.includes('youtu.be/')){
                 videoId = urlInput.split('youtu.be/')[1].split('?')[0];
-            } else if (urlInput.includes('embed/')) {
+            }
+            else if(urlInput.includes('embed/')){
                 videoId = urlInput.split('embed/')[1].split('?')[0];
-            } else if (urlInput.length === 11) {
-                // Por si el usuario pega directamente los 11 caracteres del ID del video
+            }
+            else if(urlInput.length === 11){
                 videoId = urlInput;
             }
 
-            if (videoId) {
+            if(videoId){
+
                 const reproductor = document.getElementById('reproductorCyber');
+
                 const nuevoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                
-                // Solo actualiza el iframe si el ID ha cambiado para no recargar infinitamente el video mientras se escribe
-                if (reproductor.src !== nuevoSrc) {
+
+                if(reproductor.src !== nuevoSrc){
+
                     reproductor.src = nuevoSrc;
-                    document.getElementById('videoTitle').innerText = `Canal Fatale sincronizado con éxito. Transmitiendo ID: ${videoId}`;
+
+                    document.getElementById('videoTitle').innerText =
+                    `Mon Laferte Session // ID ${videoId}`;
+
                 }
+
             }
+
         }
+
     </script>
+
 </body>
 </html>
